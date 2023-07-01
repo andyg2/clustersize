@@ -8,7 +8,12 @@ $clusterSizes = [
   8192,
   16384,
   32768,
-  65536
+  65536,
+  131072,
+  262144,
+  524288,
+  1048576,
+  2097152
 ];
 
 // Specify the directory you want to scan
@@ -71,8 +76,8 @@ function calculateXPos($x, $halfBarWidth, $string) {
  */
 function drawChart($fileSizes, $totalClusters, $directory) {
   // Define the chart dimensions
-  $width = 800;
-  $height = 400;
+  $width = 1600;
+  $height = 900;
 
 
   // normalize the scale between 0 and 100 - same effect as dual y axes
@@ -137,7 +142,7 @@ function drawChart($fileSizes, $totalClusters, $directory) {
     $labelY = $height - 20;
     $labelX = calculateXPos($x, $halfBarWidth, $clusterSize);
     $labelX = ($barLeft + $halfBarWidth) - halfImageStringWidth($clusterSize);
-    imagestring($image, 4, $labelX, $labelY, $clusterSize, $textColor);
+    imagestring($image, 4, $labelX, $labelY, formatBytes($clusterSize), $textColor);
 
 
     // increment X
