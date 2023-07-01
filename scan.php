@@ -136,7 +136,10 @@ function drawChart($fileSizes, $totalClusters, $directory) {
 
     $totalClusterFormatted = formatNums($totalCluster);
     $labelX = calculateXPos($x, $halfBarWidth, $totalClusterFormatted);
-    imagestring($image, 4, $labelX, min($barTop, $height - 40), $totalClusterFormatted, $textColor);
+    $labelY = min($barTop, $height - 40);
+    if ($labelY <= $height - 50) {
+      imagestring($image, 4, $labelX, $labelY, $totalClusterFormatted, $textColor);
+    }
 
     // Add the x-axis label
     $labelY = $height - 20;
